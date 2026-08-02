@@ -1,0 +1,34 @@
+# Node.js dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# TypeScript
+*.tsbuildinfo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# VS Code
+.vscode/
+
+# npm global cache
+npm-cache/
+
+# Optional npm cache folder
+.npm
+
+# temporary files
+tmp/
+temp/

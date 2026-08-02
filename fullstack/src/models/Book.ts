@@ -2,7 +2,7 @@ export class Book {
   constructor(
     public id: number,
     public title: string,
-    public Category: string,
+    public category: string,
     public price: number,
     public stock: number
   ) { }

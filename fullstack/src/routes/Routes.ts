@@ -1,13 +1,16 @@
 import { Router } from 'express';
 import { HomeController } from '../controllers/HomeController.js';
 
+
 export default class Routes {
   static initializeRoutes(): Router {
     const router = Router();
     
     router.get('/', HomeController.index);
     router.get('/about', HomeController.about);
+    router.get('/main-point', HomeController.Main_Point);
     router.get('/contact', HomeController.contacts);
+    router.get('/books/:id', HomeController.show);
     return router;
   }
 }

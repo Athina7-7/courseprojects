@@ -1,16 +1,15 @@
-import { Router } from 'express';
-import { HomeController } from '../controllers/HomeController.js';
-
-
-export default class Routes {
-  static initializeRoutes(): Router {
-    const router = Router();
-    
-    router.get('/', HomeController.index);
-    router.get('/about', HomeController.about);
-    router.get('/books', HomeController.books);
-    router.get('/contact', HomeController.contacts);
-    router.get('/books/:id', HomeController.show);
-    return router;
-  }
+import { Router } from 'express'; 
+import { HomeController } from '../controllers/HomeController.js'; 
+ 
+export default class Routes { 
+  public static initializeRoutes(): Router { 
+    const router = Router(); 
+     
+    router.get('/', HomeController.index); 
+    router.get('/about', HomeController.about); 
+    router.get('/contact', HomeController.contact);
+    router.get('/main-point', HomeController.Main_Point); 
+    router.get('/books/:id', HomeController.show); 
+    return router; 
+  } 
 }

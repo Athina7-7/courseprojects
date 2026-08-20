@@ -12,8 +12,10 @@ export class BookService {
   }
 
   static createBook(book: CreateBookDTO): void {
-    const id = useBookStore().books.length + 1;
-    useBookStore().books.push({ id, ...book });
+    const store = useBookStore();
+    const id =
+      store.books.length > 0 ? Math.max(...store.books.map((book) => book.id)) + 1 : 1;
+    store.books.push({ id, ...book });
   }
 
   static deleteLastBook(): void {

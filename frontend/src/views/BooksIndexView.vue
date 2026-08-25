@@ -8,6 +8,7 @@ const books = BookService.getBooks();
 const filteredBooks = ref(books);
 
 // selectors
+// OtherService es una mala practica, por ese nombre.
 const selectorCategories = OtherService.getUniqueBookCategories();
 const selectedCategory = ref('');
 

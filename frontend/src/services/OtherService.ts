@@ -1,3 +1,5 @@
+// Cambiarlo al archivo de BookService.ts, ya que OtherService es una mala práctica.
+
 import { BookService } from './BookService.js';
 
 export default class OtherService {

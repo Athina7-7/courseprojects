@@ -1,57 +1,40 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { useAuthStore } from '@/stores/AuthStore';
 
-import HomeView from '../views/HomeView.vue';
-import AdminSocialView from '@/views/admin/AdminSocialView.vue';
-import AdminUsersView from '@/views/admin/AdminUsersView.vue';
-import LoginView from '@/views/LoginView.vue';
+import HomeView from '@/views/HomeView.vue';
+import AboutView from '@/views/AboutView.vue';
+import BooksIndexView from '@/views/BooksIndexView.vue';
+import BooksCreateView from '@/views/BooksCreateView.vue';
+import BooksShowView from '@/views/BooksShowView.vue';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
-
   routes: [
     {
       path: '/',
-      redirect: '/login',
+      name: 'home',
+      component: HomeView,
     },
     {
-      path: '/login',
-      name: 'login',
-      component: LoginView,
+      path: '/about',
+      name: 'about',
+      component: AboutView,
     },
     {
-      path: '/admin/redes',
-      name: 'admin-redes',
-      component: AdminSocialView,
-      meta: {
-        requiresAuth: true,
-        requiresAdmin: true,
-      },
+      path: '/books',
+      name: 'books',
+      component: BooksIndexView,
     },
     {
-      path: '/admin/usuarios',
-      name: 'admin-usuarios',
-      component: AdminUsersView,
-      meta: {
-        requiresAuth: true,
-        requiresAdmin: true,
-      },
+      path: '/books/create',
+      name: 'books-create',
+      component: BooksCreateView,
+    },
+    {
+      path: '/books/:id',
+      name: 'book-details',
+      component: BooksShowView,
     },
   ],
-});
-
-router.beforeEach((to) => {
-  const authStore = useAuthStore();
-
-  if (to.meta.requiresAuth && !authStore.isAuthenticated()) {
-    return { name: 'login' };
-  }
-
-  if (to.meta.requiresAdmin && authStore.currentUser?.role !== 'admin') {
-    return { name: 'home' };
-  }
-
-  return true;
 });
 
 export default router;

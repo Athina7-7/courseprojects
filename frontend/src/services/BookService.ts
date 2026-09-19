@@ -1,27 +1,22 @@
 import type { BookInterface } from '@/interfaces/BookInterface';
-import { useBookStore } from '@/stores/bookstore.js';
 import type { CreateBookDTO } from '@/dtos/CreateBookDTO.js';
+import axios from 'axios';
 
 export class BookService {
-  static getBooks(): BookInterface[] {
-    return useBookStore().books;
+  private static readonly API_URL = 'http://localhost:3000/api/books';
+
+  public static async getBooks(): Promise<BookInterface[]> {
+    const { data } = await axios.get(this.API_URL);
+    return data;
   }
 
-  static getBookById(id: number): BookInterface | undefined {
-    return useBookStore().books.find((book) => book.id === id);
+  public static async getBookById(id: number): Promise<BookInterface> {
+    const { data } = await axios.get(`${this.API_URL}/${id}`);
+    return data;
   }
 
-  static createBook(book: CreateBookDTO): void {
-    const store = useBookStore();
-    const id = store.books.length > 0 ? Math.max(...store.books.map((book) => book.id)) + 1 : 1;
-    store.books.push({ id, ...book });
-  }
-
-  static deleteLastBook(): void {
-    const store = useBookStore();
-
-    if (store.books.length > 0) {
-      store.books.pop();
-    }
+  public static async createBook(book: CreateBookDTO): Promise<BookInterface> {
+    const { data } = await axios.post(this.API_URL, book);
+    return data;
   }
 }

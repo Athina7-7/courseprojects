@@ -9,7 +9,7 @@ lerna-debug.log*
 
 node_modules
 .DS_Store
-dist
+# dist removed to allow deployment files in Git
 dist-ssr
 coverage
 *.local
